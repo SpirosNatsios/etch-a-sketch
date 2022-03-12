@@ -1,20 +1,15 @@
-function main() {
-  sqrButton.addEventListener("click", changeGrid);
-}
+const square = document.createElement("div");
+const helpDiv = document.createElement("div");
+const container = document.querySelector(".main-container");
+const sqrButton = document.querySelector(".squares-button");
 
-function changeGrid(selection) {
-  selection = parseInt(prompt("Choose number of squares per side (Max 100)"));
+let selection = 16;
 
-  while (selection > 100 || selection < 0) {
-    selection = parseInt(prompt("Out of limits. Choose again (0-100)"));
-  }
-
-  emptyGrid();
-  getGrid(selection);
-}
+getGrid(selection);
+sqrButton.addEventListener("click", changeGrid);
 
 function getGrid(selection) {
-  console.log(selection);
+  square.setAttribute("id", "square");
   square.setAttribute(
     "style",
     `width:${600 / selection - 2}px;
@@ -28,6 +23,7 @@ function getGrid(selection) {
   for (let i = 0; i < selection; i++) {
     container.appendChild(helpDiv.cloneNode(true));
   }
+  mouseOver();
 }
 
 function emptyGrid() {
@@ -44,11 +40,26 @@ function emptyGrid() {
   }
 }
 
-const square = document.createElement("div");
-const helpDiv = document.createElement("div");
-const container = document.querySelector(".main-container");
-const sqrButton = document.querySelector(".squares-button");
+function changeGrid(selection) {
+  selection = parseInt(prompt("Choose number of squares per side (Max 100)"));
 
-let selection = 16;
-getGrid(selection);
-main(selection);
+  while (selection > 100 || selection < 0) {
+    selection = parseInt(prompt("Out of limits. Choose again (0-100)"));
+  }
+
+  emptyGrid();
+  getGrid(selection);
+}
+
+function mouseOver() {
+  let squares = document.querySelectorAll("#square");
+
+  squares.forEach((square) =>
+    square.addEventListener("mouseover", changeColor)
+  );
+}
+
+function changeColor(e) {
+  let gridSquare = e.target;
+  gridSquare.classList.add("test");
+}
