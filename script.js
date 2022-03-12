@@ -1,7 +1,7 @@
 const square = document.createElement("div");
 const helpDiv = document.createElement("div");
-const container = document.querySelector(".main-container");
-const sqrButton = document.querySelector(".squares-button");
+const container = document.querySelector(".grid-container");
+const sqrButton = document.querySelector("#change-button");
 
 let selection = 16;
 
@@ -14,7 +14,7 @@ function getGrid(selection) {
     "style",
     `width:${600 / selection}px;
    height:${600 / selection}px;
-   border: 1px solid black;`
+   `
   );
 
   for (let i = 0; i < selection; i++) {
@@ -41,11 +41,13 @@ function emptyGrid() {
 }
 
 function changeGrid(selection) {
+  console.log(selection);
   selection = parseInt(prompt("Choose number of squares per side (Max 100)"));
 
   while (selection > 100 || selection < 0) {
     selection = parseInt(prompt("Out of limits. Choose again (0-100)"));
   }
+  if (isNaN(selection)) return;
 
   emptyGrid();
   getGrid(selection);
