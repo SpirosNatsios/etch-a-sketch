@@ -12,8 +12,8 @@ function getGrid(selection) {
   square.setAttribute("id", "square");
   square.setAttribute(
     "style",
-    `width:${600 / selection - 2}px;
-   height:${600 / selection - 2}px;
+    `width:${600 / selection}px;
+   height:${600 / selection}px;
    border: 1px solid black;`
   );
 
