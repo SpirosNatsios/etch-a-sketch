@@ -13,8 +13,8 @@ body {
   text-align: center;
 }
 .main-container {
-  width: 540px;
-  height: 540px;
+  width: 600px;
+  height: 600px;
 
   background-color: white;
   margin: auto;
@@ -27,4 +27,17 @@ body {
   width: 13px;
   height: 13px;
   border: 1px solid black;
+}
+
+.squares-button {
+  width: 200px;
+  height: 50px;
+  margin: auto;
+}
+.button {
+  width: 600px;
+  height: 100px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
 }
