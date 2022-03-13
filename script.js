@@ -2,18 +2,26 @@ const square = document.createElement("div");
 const helpDiv = document.createElement("div");
 const container = document.querySelector(".grid-container");
 const sqrButton = document.querySelector("#change-button");
+const rgbButton = document.querySelector("#rgb");
+const clearButton = document.querySelector("#clear");
 
 let selection = 16;
 
 getGrid(selection);
 sqrButton.addEventListener("click", changeGrid);
-
+function clearGrid(selection) {
+  clearButton.addEventListener("click", () => {
+    emptyGrid();
+    getGrid(selection);
+  });
+}
 function getGrid(selection) {
   square.setAttribute("id", "square");
   square.setAttribute(
     "style",
-    `width:${600 / selection}px;
-   height:${600 / selection}px;
+    `width:${500 / selection}px;
+   height:${500 / selection}px;
+   border: 1px solid black;
    `
   );
 
@@ -24,6 +32,7 @@ function getGrid(selection) {
     container.appendChild(helpDiv.cloneNode(true));
   }
   mouseOver();
+  clearGrid(selection);
 }
 
 function emptyGrid() {
@@ -61,7 +70,32 @@ function mouseOver() {
   );
 }
 
+function generateRandomColor() {
+  let maxVal = 16777215;
+  let randomNumber = Math.random() * maxVal;
+  randomNumber = Math.floor(randomNumber);
+  randomNumber = randomNumber.toString(16);
+  let randColor = randomNumber.padStart(6, 0);
+  return `#${randColor.toUpperCase()}`;
+}
+
 function changeColor(e) {
   let gridSquare = e.target;
-  gridSquare.classList.add("test");
+  rgbButton.addEventListener("click", transformButton);
+  if (rgbButton.textContent == "RGB") {
+    gridSquare.style.cssText += "background-color: black;";
+  } else {
+    gridSquare.style.cssText += `background-color: ${generateRandomColor()};`;
+  }
+}
+
+function transformButton(e) {
+  if (e.target.textContent == "RGB") {
+    e.target.textContent = "Black";
+    return;
+  }
+  if (e.target.textContent == "Black") {
+    e.target.textContent = "RGB";
+    return;
+  }
 }
