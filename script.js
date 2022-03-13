@@ -9,19 +9,14 @@ let selection = 16;
 
 getGrid(selection);
 sqrButton.addEventListener("click", changeGrid);
-function clearGrid(selection) {
-  clearButton.addEventListener("click", () => {
-    emptyGrid();
-    getGrid(selection);
-  });
-}
+
 function getGrid(selection) {
   square.setAttribute("id", "square");
   square.setAttribute(
     "style",
     `width:${500 / selection}px;
    height:${500 / selection}px;
-   border: 1px solid black;
+   
    `
   );
 
@@ -98,4 +93,11 @@ function transformButton(e) {
     e.target.textContent = "RGB";
     return;
   }
+}
+
+function clearGrid(selection) {
+  clearButton.addEventListener("click", () => {
+    emptyGrid();
+    getGrid(selection);
+  });
 }
